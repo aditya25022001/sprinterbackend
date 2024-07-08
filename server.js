@@ -2,6 +2,9 @@ import express from "express";
 import { config } from "dotenv";
 import connectDB from './config/db.js';
 import userRoutes from './routes/user.js';
+import projectRoutes from './routes/project.js';
+import ticketRoutes from './routes/ticket.js';
+import commentRoutes from './routes/comment.js';
 import cors from 'cors';
 
 config();
@@ -22,6 +25,12 @@ app.use(cors({
 }))
 
 app.use('/api/v1/user',userRoutes);
+
+app.use('/api/v1/project',projectRoutes);
+
+app.use('/api/v1/ticket',ticketRoutes);
+
+app.use('/api/v1/comment',commentRoutes);
 
 app.get('/', (req,res) => {
     res.send("Hello world, this is the sprinter app backend")
