@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
 import { User } from '../model/user.js';
 
-export const authenticate = asyncHandler(async(req,res) => {
+export const authenticate = asyncHandler(async(req,res, next) => {
     let token;
     if(req.headers && req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try{
@@ -21,4 +21,5 @@ export const authenticate = asyncHandler(async(req,res) => {
             message:"Not authorised"
         });
     }
+    next();
 })
